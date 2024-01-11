@@ -13,6 +13,7 @@ computational biology, 17(5), e1008934.
 
 <pre>
 $ python -m pip install --no-deps tifffile
+$ python -m pip install scikit-image
 </pre>
 
 <h3>Data</h3>
