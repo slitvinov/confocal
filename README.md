@@ -28,7 +28,7 @@ done
 
 Extract files
 <pre>
-$ 7z x -bd data.7z.001
+$ 7za x -bd data.7z.001
 </pre>
 
 <h3>Convert</h3>
