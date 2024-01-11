@@ -27,41 +27,41 @@ for path in sys.argv[1:]:
             f.write(out.tobytes())
     with open(xdmf, "w") as f:
         f.write("""\
-    <Xdmf
-        Version="2">
-      <Domain>
-        <Grid>
-          <Topology
-              TopologyType="3DCoRectMesh"
-              Dimensions="%d %d %d"/>
-          <Geometry
-              GeometryType="ORIGIN_DXDYDZ">
-            <DataItem
-                Dimensions="3">
-              0
-              0
-              0
-            </DataItem>
-            <DataItem
-                Dimensions="3">
-              1
-              1
-              1
-            </DataItem>
-          </Geometry>
-          <Attribute
-              Name="u"
-              Center="Cell">
-            <DataItem
-                NumberType="UChar"
-                Format="Binary"
-                Dimensions="%ld %ld %ld">
-              %s
-            </DataItem>
-          </Attribute>
-        </Grid>
-      </Domain>
-    </Xdmf>
-    """ % (nz + 1, ny + 1, nx + 1, nz, ny, nx, raw))
+<Xdmf
+    Version="2">
+  <Domain>
+    <Grid>
+      <Topology
+          TopologyType="3DCoRectMesh"
+          Dimensions="%d %d %d"/>
+      <Geometry
+          GeometryType="ORIGIN_DXDYDZ">
+        <DataItem
+            Dimensions="3">
+          0
+          0
+          0
+        </DataItem>
+        <DataItem
+            Dimensions="3">
+          1
+          1
+          1
+        </DataItem>
+      </Geometry>
+      <Attribute
+          Name="u"
+          Center="Cell">
+        <DataItem
+            NumberType="UChar"
+            Format="Binary"
+            Dimensions="%ld %ld %ld">
+          %s
+        </DataItem>
+      </Attribute>
+    </Grid>
+  </Domain>
+</Xdmf>
+""" % (nz + 1, ny + 1, nx + 1, nz, ny, nx, raw))
     sys.stderr.write("tiff2xdmf: %s\n" % raw)
     sys.stderr.write("tiff2xdmf: %s\n" % xdmf)
