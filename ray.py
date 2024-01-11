@@ -9,45 +9,33 @@ from vtkmodules.vtkRenderingCore import (vtkColorTransferFunction,
                                          vtkRenderer, vtkVolume,
                                          vtkVolumeProperty)
 from vtkmodules.vtkRenderingVolume import vtkFixedPointVolumeRayCastMapper
-# noinspection PyUnresolvedReferences
 from vtkmodules.vtkRenderingVolumeOpenGL2 import vtkOpenGLRayCastImageDisplayHelper
 
 path = sys.argv[1]
 colors = vtkNamedColors()
-# This is a simple volume rendering example that
-# uses a vtkFixedPointVolumeRayCastMapper
-# Create the standard renderer, render window
-# and interactor.
 ren1 = vtkRenderer()
 renWin = vtkRenderWindow()
 renWin.AddRenderer(ren1)
 iren = vtkRenderWindowInteractor()
 iren.SetRenderWindow(renWin)
-# Create the reader for the data.
 reader = vtkStructuredPointsReader()
 reader.SetFileName(path)
-# Create transfer mapping scalar value to opacity.
 opacityTransferFunction = vtkPiecewiseFunction()
 opacityTransferFunction.AddPoint(20, 0.0)
 opacityTransferFunction.AddPoint(255, 0.2)
-# Create transfer mapping scalar value to color.
 colorTransferFunction = vtkColorTransferFunction()
 colorTransferFunction.AddRGBPoint(0.0, 0.0, 0.0, 0.0)
 colorTransferFunction.AddRGBPoint(64.0, 1.0, 0.0, 0.0)
 colorTransferFunction.AddRGBPoint(128.0, 0.0, 0.0, 1.0)
 colorTransferFunction.AddRGBPoint(192.0, 0.0, 1.0, 0.0)
 colorTransferFunction.AddRGBPoint(255.0, 0.0, 0.2, 0.0)
-# The property describes how the data will look.
 volumeProperty = vtkVolumeProperty()
 volumeProperty.SetColor(colorTransferFunction)
 volumeProperty.SetScalarOpacity(opacityTransferFunction)
 volumeProperty.ShadeOn()
 volumeProperty.SetInterpolationTypeToLinear()
-# The mapper / ray cast function know how to render the data.
 volumeMapper = vtkFixedPointVolumeRayCastMapper()
 volumeMapper.SetInputConnection(reader.GetOutputPort())
-# The volume holds the mapper and the property and
-# can be used to position/orient the volume.
 volume = vtkVolume()
 volume.SetMapper(volumeMapper)
 volume.SetProperty(volumeProperty)
