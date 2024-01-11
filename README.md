@@ -15,6 +15,17 @@ computational biology, 17(5), e1008934.
 $ python -m pip install --no-deps tifffile
 </pre>
 
+<h3>Data</h3>
+
+<https://zenodo.org/records/4670205>
+
+Download 10Gb of data
+<pre>
+$ for i in 01 02 03 04 05 06 07 08 09 10
+do wget -q https://zenodo.org/records/4670205/files/data.7z.0$i
+done
+</pre>
+
 <h3>Convert</h3>
 
 <pre>
