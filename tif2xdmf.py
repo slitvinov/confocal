@@ -4,6 +4,7 @@ import re
 import sys
 import tifffile
 
+Cell = False
 for path in sys.argv[1:]:
     basename = re.sub("\.tif$", "", os.path.basename(path))
     try:
@@ -51,7 +52,7 @@ for path in sys.argv[1:]:
       </Geometry>
       <Attribute
           Name="u"
-          Center="Cell">
+          Center="%s">
         <DataItem
             NumberType="UChar"
             Format="Binary"
@@ -62,6 +63,7 @@ for path in sys.argv[1:]:
     </Grid>
   </Domain>
 </Xdmf>
-""" % (nz + 1, ny + 1, nx + 1, nz, ny, nx, raw))
+""" % ((nz + 1, ny + 1, nx + 1, "Cell", nz, ny, nx, raw) if Cell else
+               (nz, ny, nx, "Node", nz, ny, nx, raw)))
     sys.stderr.write("tiff2xdmf: %s\n" % raw)
     sys.stderr.write("tiff2xdmf: %s\n" % xdmf)

@@ -1,0 +1,35 @@
+<Xdmf
+    Version="2">
+  <Domain>
+    <Grid>
+      <Topology
+          TopologyType="3DCoRectMesh"
+          Dimensions="185 101 101"/>
+      <Geometry
+          GeometryType="ORIGIN_DXDYDZ">
+        <DataItem
+            Dimensions="3">
+          0
+          0
+          0
+        </DataItem>
+        <DataItem
+            Dimensions="3">
+          1
+          1
+          1
+        </DataItem>
+      </Geometry>
+      <Attribute
+          Name="u"
+          Center="Node">
+        <DataItem
+            NumberType="UChar"
+            Format="Binary"
+            Dimensions="185 101 101">
+          101x101x185le.000137.raw
+        </DataItem>
+      </Attribute>
+    </Grid>
+  </Domain>
+</Xdmf>

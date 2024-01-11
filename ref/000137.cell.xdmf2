@@ -4,7 +4,7 @@
     <Grid>
       <Topology
           TopologyType="3DCoRectMesh"
-          Dimensions="186 102 102"/>
+          Dimensions="185 101 101"/>
       <Geometry
           GeometryType="ORIGIN_DXDYDZ">
         <DataItem
@@ -22,7 +22,7 @@
       </Geometry>
       <Attribute
           Name="u"
-          Center="Cell">
+          Center="Node">
         <DataItem
             NumberType="UChar"
             Format="Binary"
