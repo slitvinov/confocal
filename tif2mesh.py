@@ -4,6 +4,7 @@ import re
 import sys
 import tifffile
 import skimage.measure
+import struct
 
 Cell = False
 level = 50
@@ -22,11 +23,9 @@ for path in sys.argv[1:]:
         np.copyto(volume[:, :, i], page.asarray(), "no")
     verts, faces, normals, values = skimage.measure.marching_cubes(
         volume, level)
-    off = "%s.off" % basename
-    with open(off, "w") as f:
-        f.write("OFF\n%ld %ld 0\n" % (len(verts), len(faces)))
-        for x, y, z in verts:
-            f.write("%.16e %.16e %.16e\n" % (x, y, z))
-        for i, j, k in faces:
-            f.write("3 %ld %ld %ld\n" % (i, j, k))
-    sys.stderr.write("tiff2mesh: %s\n" % off)
+    sys.stdout.buffer.write(b"OFF BINARY\n")
+    sys.stdout.buffer.write(struct.pack(">3i", len(verts), len(faces), 0))
+    for x, y, z in verts:
+        sys.stdout.buffer.write(struct.pack(">3f", x, y, z))
+    for i, j, k in faces:
+        sys.stdout.buffer.write(struct.pack(">5i", 3, i, j, k, 0))
