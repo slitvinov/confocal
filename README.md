@@ -26,6 +26,11 @@ do wget -q https://zenodo.org/records/4670205/files/data.7z.0$i
 done
 </pre>
 
+Extract files
+<pre>
+$ 7z x -bd data.7z.001
+</pre>
+
 <h3>Convert</h3>
 
 <pre>
